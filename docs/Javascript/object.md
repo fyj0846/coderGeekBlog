@@ -71,7 +71,7 @@ Ninja.staticMethod = function() {}  // 实现静态方法
 
 # ES6中的Class
 ```javascript
-Class Person {
+class Person {
     constructor () {
         // 构造方法
     }
@@ -85,7 +85,7 @@ Class Person {
     }
 }
 
-Class Ninja extends Person {
+class Ninja extends Person {
     constructor () {
         super()
         // 构造方法
@@ -116,4 +116,114 @@ function Ninja() {
 
 Ninja.prototype = new Person()
 Ninja.prototype.constructor = Ninja
+```
+
+## 对象代理
+通过闭包提供私有变量，并通过重写私有变量的读、写方法完成更多功能，比如记录操作日志
+```javascript
+function Ninja() {
+    let _name = ''
+
+    this.getName = function() {
+        console.log('read name property')
+        return _name
+    }
+
+    this.setName = function(newName) {
+        console.log('set name property to ' + newName)
+        _name = newName
+    }
+ }
+```
+
+javascript提供了语言级的对象访问控制
+## 对象字面量定义
+```javascript
+const obj = {
+    _name: '',
+    get name () {
+        console.log('read propety name')
+        return this._name
+    },
+    set name (name) {
+        this._name = name
+        console.log('set name property to ' + this._name)
+    }
+}
+```
+## 函数Object.defineProperty定义
+```javascript
+function Ninja() {
+    let _name = ''
+    Object.defineProperty(this, 'name', {
+        get: () => {
+            console.log('read property name')
+            return this._name
+        },
+        set: (name) => {
+            console.log('set property name')
+            this._name = name
+        }
+    })
+}
+```
+## class定义
+```javascript
+class Ninja {
+    constructor(name) {
+        this._name = name
+    }
+
+    get name() {
+        console.log('red property name')
+        return this._name
+    }
+
+    set name(name) {
+        console.log('set property name ' + name)
+        this._name = name
+    }
+}
+```
+
+# 代理
+我们通过代理可以控制对另外一个对象的访问，可以定义与对象交互时的自定义行为：读写属性或调用方法。强于传统的getter/setter方案（仅限每个属性的单独定义，不具备通用性，也无法控制方法调用）。
+
+### 代理属性的控制
+```javascript
+function ninja(name) {console.log('-------ninja ' + name + '-------')}
+function makeLoggable(target) {
+    return new Proxy(target, {
+        get: (target, property) => {
+            console.log('read property: ' + property)
+            return target[property]
+        },
+        set: (target, property, value) => {
+            console.log('set property to: ' + value)
+            target[property] = value
+        }
+    })
+}
+ninja = makeLoggable(ninja)
+ninja('proxy')
+// 可以对任何需要增加读、写属性行为进行扩展（如日志记录，负数组索引，默认值填充，参数校验等）的对象进行代理包装
+```
+
+### 代理函数的控制
+通过代理实现无需要修改目标函数的内部代码，实现对函数行为的扩展
+```javascript
+function ninja(name) {console.log('-------ninja ' + name + '-------')}
+function evaluateFunc(target) {
+    return new Proxy(target, {
+        apply: (target, thisArg, args) => {
+            debugger
+            console.time('target')
+            let result = target.apply(thisArg, args)
+            console.timeEnd('target')  // 本例中，通过代理验证目标函数的执行效率
+            return result
+        }
+    })
+}
+newNinja = evaluateFunc(ninja)
+newNinja('proxy')
 ```

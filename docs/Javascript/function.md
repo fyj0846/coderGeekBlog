@@ -149,6 +149,19 @@ outVar1('out1')
 outVar2 = outFunction()
 outVar2('out2')
 ```
+### 闭包的应用
+```javascript
+function Ninja() {
+    var feints = 0
+    this.getFeints = function() {
+        return feints
+    }
+    this.setFeints = function() {
+        feints++
+    }
+}
+let ninja = new Ninja()
+```
 ::: warning
 执行外部函数时，将内部声明的函数暴露到外部，由外部变量应用
 正常情况下outFunction执行完毕之后，函数栈出栈资源被回收，但因为此时外部引用了内部函数，而内部函数存在对内部变量的引用，因此资源得以保留

@@ -11,8 +11,7 @@ module.exports = {
             {
                 text: '文章',
                 items: [
-                    { text: 'Javascript', link: '/Javascript/function' },
-                    { text: 'HTML', link: '/HTML/test' }
+                    { text: 'Javascript', link: '/Javascript/function' }
                 ]
             },
             { text: '关于', link: '/about/' },
@@ -25,8 +24,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                     '/Javascript/function',
-                    '/Javascript/object',
-                    '/Javascript/demo'
+                    '/Javascript/object'
                 ]
             },
             {
