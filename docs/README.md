@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /hero.png
+heroImage: /cdrgeek.png
 actionText: 马上进入 →
 actionLink: /Javascript/function
 features:

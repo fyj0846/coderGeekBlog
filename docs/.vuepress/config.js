@@ -1,10 +1,10 @@
 var nav = require('./nav')
 var sidebar = require('./sidebar')
 module.exports = {
-    title: 'CoderGeek',
-    description: 'fyj0846的博客',
+    title: 'CdrGeek',
+    description: '个人博客',
     head: [
-        ['link', { rel: 'icon', href: '/img/logo.ico' }],
+        ['link', { rel: 'icon', href: '/cdrgeek.png' }],
         ['link', { rel: 'manifest', href: '/manifest.json' }],
     ],
     themeConfig: {
