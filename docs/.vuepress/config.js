@@ -1,8 +1,8 @@
 var nav = require('./nav')
 var sidebar = require('./sidebar')
 module.exports = {
-    title: 'coderTro',
-    description: 'coderTro的博客',
+    title: 'CoderGeek',
+    description: 'fyj0846的博客',
     head: [
         ['link', { rel: 'icon', href: '/img/logo.ico' }],
         ['link', { rel: 'manifest', href: '/manifest.json' }],
