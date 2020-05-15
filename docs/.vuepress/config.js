@@ -1,8 +1,8 @@
 var nav = require('./nav')
 var sidebar = require('./sidebar')
 module.exports = {
-    title: 'CdrGeek',
-    description: '个人博客',
+    title: ' ',
+    description: '技术博客',
     head: [
         ['link', { rel: 'icon', href: '/cdrgeek.png' }],
         ['link', { rel: 'manifest', href: '/manifest.json' }],
@@ -10,7 +10,7 @@ module.exports = {
     themeConfig: {
         nav,
         sidebar,
-        sidebarDepth: 2,
+        sidebarDepth: 3,
         lastUpdated: 'Last Updated',
     },
     serviceWorker: true

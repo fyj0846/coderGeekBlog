@@ -1,4 +1,4 @@
-#正则表达式
+# 正则表达式
 ## 捕获匹配片段
 ```javascript
 var testStr = "transform:translateX(10px);transform:translateY(15px);transform:translateX(20px);transform:translateY(30px);"
